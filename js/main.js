@@ -6,9 +6,7 @@ spaceBarPressed = false;
 setInterval(() => {
     const newEnemy = new Enemy();
     enemies.push(newEnemy);
-}, 2000);
-
-
+}, 1500);
 
 // update game
 setInterval(() => {
@@ -25,15 +23,19 @@ setInterval(() => {
             enemies.splice(index, 1); // Remove enemy from the enemies array
         }
 
-        // detect collision
+        // Get bounding rectangles for player and enemy
+        const playerRect = player.playerElm.getBoundingClientRect();
+        const enemyRect = enemyShip.enemy.getBoundingClientRect();
+
+        // Detect collision using bounding rectangles
         if (
             !enemyShip.collided &&
-            player.positionX < enemyShip.positionX + enemyShip.width &&
-            player.positionX + player.width > enemyShip.positionX &&
-            player.positionY < enemyShip.positionY + enemyShip.height &&
-            player.positionY + player.height > enemyShip.positionY
+            playerRect.left < enemyRect.right &&
+            playerRect.right > enemyRect.left &&
+            playerRect.top < enemyRect.bottom &&
+            playerRect.bottom > enemyRect.top
         ) {
-            // subtract hit from strength
+            // Subtract hit from strength
             enemyShip.collided = true;
             player.strength--;
             if (player.strength == 0) {
@@ -44,11 +46,7 @@ setInterval(() => {
             }
         }
     });
-
-
 }, 60);
-
-
 
 // detect multiple key events
 // Initialize a set to store the keys that are currently pressed
@@ -72,14 +70,10 @@ function checkBulletHits() {
         const bullet = player.bullets[i];
 
         // Check for collision with each enemy
-        for (let j = 0; j < enemies.length; j++) {
-            const enemyShip = enemies[j];
-
-            // Get bounding rectangles for bullet and enemy
-            const bulletRect = bullet.getBoundingClientRect();
+        enemies.forEach((enemyShip, j) => {
             const enemyRect = enemyShip.enemy.getBoundingClientRect();
+            const bulletRect = bullet.getBoundingClientRect();
 
-            // Check if bullet collides with enemy
             if (
                 bulletRect.left < enemyRect.right &&
                 bulletRect.right > enemyRect.left &&
@@ -90,21 +84,19 @@ function checkBulletHits() {
                 enemyShip.collided = true;
 
                 // Remove the enemy from the DOM
-                enemyShip.enemy.remove();
+                if (enemyShip.enemy.parentNode) {
+                    enemyShip.enemy.parentNode.removeChild(enemyShip.enemy);
+                }
 
-                // Remove the enemy from the enemies array
                 enemies.splice(j, 1);
 
                 // Remove the bullet from the DOM
                 bullet.remove();
 
-                // Remove the bullet from the player's bullets array
                 player.bullets.splice(i, 1);
-
-                // Exit the loop since the bullet can hit only one enemy
-                break;
+                return;
             }
-        }
+        });
     }
 }
 
@@ -122,49 +114,37 @@ function checkPlayerInteraction() {
         player.moveRight();
     }
 
-    // Check if ArrowUp key is pressed
     if (keysPressed.has("ArrowUp")) {
-        // Check if ArrowLeft key is also pressed
         if (keysPressed.has("ArrowLeft")) {
             player.moveUp();
-            player.moveLeft(); // Move diagonally up and left
-        }
-        // Check if ArrowRight key is also pressed
-        else if (keysPressed.has("ArrowRight")) {
+            player.moveLeft();
+        } else if (keysPressed.has("ArrowRight")) {
             player.moveUp()
-            player.moveRight(); // Move diagonally up and right
+            player.moveRight();
         } else {
-            player.moveUp(); // Move up
+            player.moveUp();
         }
     }
 
-    // Check if ArrowDown key is pressed
     if (keysPressed.has("ArrowDown")) {
-        // Check if ArrowLeft key is also pressed
         if (keysPressed.has("ArrowLeft")) {
             player.moveDown();
-            player.moveLeft(); // Move diagonally down and left
-        }
-        // Check if ArrowRight key is also pressed
-        else if (keysPressed.has("ArrowRight")) {
+            player.moveLeft();
+        } else if (keysPressed.has("ArrowRight")) {
             player.moveDown();
-            player.moveRight(); // Move diagonally down and right
+            player.moveRight();
         } else {
-            player.moveDown(); // Move down
+            player.moveDown();
         }
     }
 }
 
 // game loop
-function update() {
-
+function updateGame() {
     checkBulletHits();
     checkPlayerInteraction();
-
-    // Call the update function again to continuously update the game
-    requestAnimationFrame(update);
+    requestAnimationFrame(updateGame);
 }
 
-// Start the game loop
-update();
+updateGame();
 
