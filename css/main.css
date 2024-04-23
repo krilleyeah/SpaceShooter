@@ -1,5 +1,5 @@
 body {
-    background-color: pink;
+    background-color: black;
     margin: 0;
     padding: 0;
 }
@@ -7,18 +7,18 @@ body {
 #board {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(128, 209, 209);
+    background-color: black;
     position: relative;
     overflow: hidden;
 }
 
 #player {
-    background-color: rgb(255, 0, 166);
+    background-color: white;
     position: absolute;
 }
 
 .enemy {
-    background-color: rgb(90, 19, 156);
+    background-color: red;
     position: absolute;
 }
 
@@ -28,6 +28,6 @@ body {
 }
 
 .bullet {
-    background-color: red;
+    background-color: white;
     position: absolute;
 }

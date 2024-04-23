@@ -1,8 +1,8 @@
 
 class Enemy {
     constructor() {
-        this.width = 10;
-        this.height = 10;
+        this.width = 5;
+        this.height = 12;
         this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // random number between 0 and (100-width)
         this.positionY = 100;
         this.enemy = null;
