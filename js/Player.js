@@ -1,7 +1,7 @@
 class Player {
     constructor() {
         this.width = 6;
-        this.height = 18;
+        this.height = 8;
         this.positionX = 50 - this.width / 2;
         this.positionY = 5;
         this.bullets = [];

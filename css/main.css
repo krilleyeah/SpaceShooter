@@ -13,8 +13,12 @@ body {
 }
 
 #player {
-    background-color: white;
+    background-color: black;
     position: absolute;
+    background-image: url("../img/hero.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 90%;      
 }
 
 .enemy {
@@ -24,10 +28,14 @@ body {
 
 #page-gameover {
     text-align: center;
-    background-color: rgb(166, 161, 171);
+    background-color: black;
 }
 
 .bullet {
     background-color: white;
     position: absolute;
+}
+
+h1 {
+    color: white;
 }
