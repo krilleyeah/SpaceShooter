@@ -46,9 +46,20 @@ body {
     background-color: black;
 }
 
-.bullet {
-    background-color: white;
+.bullet1 {
     position: absolute;
+    background-image: url("../img/laser1.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 80%;
+}
+
+.bullet2 {
+    position: absolute;
+    background-image: url("../img/laser2.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 70%;
 }
 
 h1 {

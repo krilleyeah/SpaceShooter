@@ -7,9 +7,10 @@ spaceBarPressed = false;
 // create enemies
 setInterval(() => {
     enemyCounter++;
-    let enemyClass = enemyCounter %2 == 0 ? "enemy1" : "enemy2";
+    let enemyClass = enemyCounter % 2 == 0 ? "enemy1" : "enemy2";
     const newEnemy = new Enemy(enemyClass);
     enemies.push(newEnemy);
+
 }, 1500);
 
 // update game
@@ -18,12 +19,23 @@ setInterval(() => {
 
         enemyShip.moveDown();
 
+        // Shoot every second
+        if (enemyShip.shootTimer === undefined) {
+            enemyShip.shootTimer = setInterval(() => {
+                enemyShip.shoot();
+            }, 2000);
+        }
+
         // Remove enemies that are out of bounds
         if (enemyShip.positionY < -enemyShip.height) {
             if (enemyShip.domElem.parentNode) {
                 enemyShip.domElem.parentNode.removeChild(enemyShip.domElem);
             } // Remove enemy from the DOM
             enemies.splice(index, 1); // Remove enemy from the enemies array
+
+            // Clear the shoot timer when the enemy is removed
+            clearInterval(enemyShip.shootTimer);
+            delete enemyShip.shootTimer; // Remove the shootTimer property from the enemyShip object
         }
 
         // Get bounding rectangles for player and enemy
@@ -45,7 +57,7 @@ setInterval(() => {
             if (player.strength == 0) {
                 console.log("game over...");
                 // location.href = "gameover.html";
-            } 
+            }
         }
     });
 }, 60);
@@ -93,6 +105,9 @@ function checkBulletHits() {
                 }
 
                 enemies.splice(j, 1);
+                // Clear the shoot timer when the enemy is removed
+                clearInterval(enemyShip.shootTimer);
+                delete enemyShip.shootTimer; 
 
                 // Remove the bullet from the DOM
                 bullet.remove();
@@ -151,4 +166,3 @@ function updateGame() {
 }
 
 updateGame();
-

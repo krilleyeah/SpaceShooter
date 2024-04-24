@@ -41,20 +41,20 @@ class Player {
     }
 
     collision() {
-        this.domElem.style.height = (this.height - 5) + "vh";
+        this.domElem.style.height = (this.height - 2) + "vh";
         setTimeout(() => {
             this.domElem.style.height = this.height + "vh";
-        }, 50);
+        }, 100);
     }
 
     shoot() {
         const bullet = document.createElement("div");
-        bullet.className = "bullet";
-        bullet.style.width = "1vw";
-        bullet.style.height = "3vh";
+        bullet.className = "bullet1";
+        bullet.style.width = "3vw";
+        bullet.style.height = "6vh";
 
         // Calculate the position of the bullet based on the player's position and width
-        const bulletLeft = this.positionX + (this.width / 2) - 1; // Adjusted to center the bullet
+        const bulletLeft = this.positionX + (this.width / 2) - 2; // Adjusted to center the bullet
         const bulletBottom = this.positionY + this.height + 0.5; // Adjusted to position slightly above the player
 
         bullet.style.left = bulletLeft + "vw";
@@ -65,14 +65,13 @@ class Player {
         this.bullets.push(bullet);
 
         const bulletInterval = setInterval(() => {
-            bullet.style.bottom = (parseFloat(bullet.style.bottom) + 1) + "vh";
+            bullet.style.bottom = (parseFloat(bullet.style.bottom) + 1) + "vh";       
+            
             if (parseFloat(bullet.style.bottom) > 100) { 
                 clearInterval(bulletInterval); // Stop the animation
                 if (parentElm.contains(bullet)) {
                     parentElm.removeChild(bullet); // Remove the bullet from the DOM
                 }
-                
-
                 // Remove the bullet from the player's bullets array
                 const index = this.bullets.indexOf(bullet);
                 if (index !== -1) {
