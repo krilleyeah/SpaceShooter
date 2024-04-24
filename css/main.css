@@ -2,23 +2,27 @@ body {
     background-color: black;
     margin: 0;
     padding: 0;
+
+    /* background-image: url("../img/galaxy-3608029_1280.jpg"); */
+    background-image: url("../img/orion-nebula-11107_1280.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100%; 
 }
 
 #board {
     width: 100vw;
     height: 100vh;
-    background-color: black;
     position: relative;
     overflow: hidden;
 }
 
 #player {
-    background-color: black;
     position: absolute;
-    background-image: url("../img/hero.jpg");
+    background-image: url("../img/hero.png");
     background-position: 0 0;
     background-repeat: no-repeat;
-    background-size: 90%;      
+    background-size: 90%;
 }
 
 .enemy {

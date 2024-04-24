@@ -12,7 +12,6 @@ class Enemy {
     }
     createEnemy() {
         this.enemy = document.createElement("div");
-
         this.enemy.className = "enemy";
         this.enemy.style.width = this.width + "vw";
         this.enemy.style.height = this.height + "vh";

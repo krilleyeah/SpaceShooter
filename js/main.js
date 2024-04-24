@@ -16,16 +16,15 @@ setInterval(() => {
 
         // Remove enemies that are out of bounds
         if (enemyShip.positionY < -enemyShip.height) {
-            if (enemyShip.enemy.parentNode) {
-                enemyShip.enemy.parentNode.removeChild(enemyShip.enemy);
-                console.log("remove enemy");
+            if (enemyShip.domElem.parentNode) {
+                enemyShip.domElem.parentNode.removeChild(enemyShip.enemy);
             } // Remove enemy from the DOM
             enemies.splice(index, 1); // Remove enemy from the enemies array
         }
 
         // Get bounding rectangles for player and enemy
-        const playerRect = player.playerElm.getBoundingClientRect();
-        const enemyRect = enemyShip.enemy.getBoundingClientRect();
+        const playerRect = player.domElem.getBoundingClientRect();
+        const enemyRect = enemyShip.domElem.getBoundingClientRect();
 
         // Detect collision using bounding rectangles
         if (
@@ -41,9 +40,7 @@ setInterval(() => {
             if (player.strength == 0) {
                 console.log("game over...");
                 // location.href = "gameover.html";
-            } else {
-                console.log("player strength left " + player.strength);
-            }
+            } 
         }
     });
 }, 60);

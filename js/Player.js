@@ -1,46 +1,45 @@
 class Player {
     constructor() {
-        this.width = 6;
-        this.height = 8;
+        this.width = 10;
+        this.height = 10;
         this.positionX = 50 - this.width / 2;
         this.positionY = 5;
         this.bullets = [];
         this.strength = 5; // number of hits that can be taken
         this.bulletSpeed = 15;
 
-        this.playerElm = document.getElementById("player");
-        this.playerElm.style.width = this.width + "vw";
-        this.playerElm.style.height = this.height + "vh";
-        this.playerElm.style.left = this.positionX + "vw";
-        this.playerElm.style.bottom = this.positionY + "vh";
+        this.domElem = document.getElementById("player");
+        this.domElem.style.width = this.width + "vw";
+        this.domElem.style.height = this.height + "vh";
+        this.domElem.style.left = this.positionX + "vw";
+        this.domElem.style.bottom = this.positionY + "vh";
     }
     moveLeft() {
         if (this.positionX > 0) {
             this.positionX--;
-            this.playerElm.style.left = this.positionX + "vw";
+            this.domElem.style.left = this.positionX + "vw";
         }
     }
     moveUp() {
         if (this.positionY < 100 - this.height) {
             this.positionY++;
-            this.playerElm.style.bottom = this.positionY + "vh";
+            this.domElem.style.bottom = this.positionY + "vh";
 
         }
     }
     moveDown() {
         if (this.positionY > 0) {
             this.positionY--;
-            this.playerElm.style.bottom = (this.positionY - 1) + "vh";
+            this.domElem.style.bottom = (this.positionY - 1) + "vh";
         }
     }
     moveRight() {
         if (this.positionX < 100 - this.width) {
             this.positionX++;
-            this.playerElm.style.left = this.positionX + "vw";
+            this.domElem.style.left = this.positionX + "vw";
         }
     }
     shoot() {
-        console.log("shoot");
         const bullet = document.createElement("div");
         bullet.className = "bullet";
         bullet.style.width = "2vw";
