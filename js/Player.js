@@ -42,11 +42,11 @@ class Player {
     shoot() {
         const bullet = document.createElement("div");
         bullet.className = "bullet";
-        bullet.style.width = "2vw";
+        bullet.style.width = "1vw";
         bullet.style.height = "3vh";
 
         // Calculate the position of the bullet based on the player's position and width
-        const bulletLeft = this.positionX + (this.width / 2) - 1.5; // Adjusted to center the bullet
+        const bulletLeft = this.positionX + (this.width / 2) - 1; // Adjusted to center the bullet
         const bulletBottom = this.positionY + this.height + 0.5; // Adjusted to position slightly above the player
 
         bullet.style.left = bulletLeft + "vw";

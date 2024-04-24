@@ -1,29 +1,30 @@
 
 class Enemy {
-    constructor() {
-        this.width = 5;
-        this.height = 12;
+    constructor(enemyClass) {
+        this.enemyClass = enemyClass;
+        this.width = 7;
+        this.height = 15;
         this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // random number between 0 and (100-width)
         this.positionY = 100;
-        this.enemy = null;
+        this.domElem = null;
         this.collided = false;
 
         this.createEnemy();
     }
     createEnemy() {
-        this.enemy = document.createElement("div");
-        this.enemy.className = "enemy";
-        this.enemy.style.width = this.width + "vw";
-        this.enemy.style.height = this.height + "vh";
-        this.enemy.style.left = this.positionX + "vw";
-        this.enemy.style.bottom = this.positionY + "vh";
+        this.domElem = document.createElement("div");
+        this.domElem.className = this.enemyClass;
+        this.domElem.style.width = this.width + "vw";
+        this.domElem.style.height = this.height + "vh";
+        this.domElem.style.left = this.positionX + "vw";
+        this.domElem.style.bottom = this.positionY + "vh";
 
         const parentElm = document.getElementById("board");
-        parentElm.appendChild(this.enemy);
+        parentElm.appendChild(this.domElem);
     }
     moveDown() {
         this.positionY--;
-        this.enemy.style.bottom = this.positionY + "vh";
+        this.domElem.style.bottom = this.positionY + "vh";
     }
 }
 

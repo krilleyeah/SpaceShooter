@@ -25,9 +25,20 @@ body {
     background-size: 90%;
 }
 
-.enemy {
-    background-color: red;
+.enemy1 {
     position: absolute;
+    background-image: url("../img/enemy1.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 90%;
+}
+
+.enemy2 {
+    position: absolute;
+    background-image: url("../img/enemy2.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 90%;
 }
 
 #page-gameover {

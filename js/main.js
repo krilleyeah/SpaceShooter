@@ -1,10 +1,13 @@
 const player = new Player();
 const enemies = [];
+let enemyCounter = 0;
 spaceBarPressed = false;
 
 // create enemies
 setInterval(() => {
-    const newEnemy = new Enemy();
+    enemyCounter++;
+    let enemyClass = enemyCounter %2 == 0 ? "enemy1" : "enemy2";
+    const newEnemy = new Enemy(enemyClass);
     enemies.push(newEnemy);
 }, 1500);
 
@@ -17,7 +20,7 @@ setInterval(() => {
         // Remove enemies that are out of bounds
         if (enemyShip.positionY < -enemyShip.height) {
             if (enemyShip.domElem.parentNode) {
-                enemyShip.domElem.parentNode.removeChild(enemyShip.enemy);
+                enemyShip.domElem.parentNode.removeChild(enemyShip.domElem);
             } // Remove enemy from the DOM
             enemies.splice(index, 1); // Remove enemy from the enemies array
         }
@@ -68,7 +71,7 @@ function checkBulletHits() {
 
         // Check for collision with each enemy
         enemies.forEach((enemyShip, j) => {
-            const enemyRect = enemyShip.enemy.getBoundingClientRect();
+            const enemyRect = enemyShip.domElem.getBoundingClientRect();
             const bulletRect = bullet.getBoundingClientRect();
 
             if (
@@ -81,8 +84,8 @@ function checkBulletHits() {
                 enemyShip.collided = true;
 
                 // Remove the enemy from the DOM
-                if (enemyShip.enemy.parentNode) {
-                    enemyShip.enemy.parentNode.removeChild(enemyShip.enemy);
+                if (enemyShip.domElem.parentNode) {
+                    enemyShip.domElem.parentNode.removeChild(enemyShip.domElem);
                 }
 
                 enemies.splice(j, 1);
