@@ -2,7 +2,8 @@ const player = new Player();
 const enemies = [];
 let enemyCounter = 0;
 const score = new Score();
-spaceBarPressed = false;
+let spaceBarPressed = false;
+let keysPressed = {};
 
 // create enemies
 setInterval(() => {
@@ -10,73 +11,113 @@ setInterval(() => {
     let enemyClass = enemyCounter % 2 == 0 ? "enemy1" : "enemy2";
     const newEnemy = new Enemy(enemyClass);
     enemies.push(newEnemy);
-
 }, 1500);
 
 // update game
 setInterval(() => {
+    updateEnemies();
+}, 80);
+
+function updateEnemies() {
     enemies.forEach((enemyShip, index) => {
-
         enemyShip.moveDown();
-
-        // Shoot every second
-        if (enemyShip.shootTimer === undefined) {
-            enemyShip.shootTimer = setInterval(() => {
-                enemyShip.shoot();
-            }, 2000);
-        }
+        manageShootTimer(enemyShip);
 
         // Remove enemies that are out of bounds
         if (enemyShip.positionY < -enemyShip.height) {
-            if (enemyShip.domElem.parentNode) {
-                enemyShip.domElem.parentNode.removeChild(enemyShip.domElem);
-            } // Remove enemy from the DOM
-            enemies.splice(index, 1); // Remove enemy from the enemies array
-
-            // Clear the shoot timer when the enemy is removed
-            clearInterval(enemyShip.shootTimer);
-            delete enemyShip.shootTimer; // Remove the shootTimer property from the enemyShip object
+            removeEnemy(enemyShip, index);
         }
 
-        // Get bounding rectangles for player and enemy
+        // Detect collision
         const playerRect = player.domElem.getBoundingClientRect();
         const enemyRect = enemyShip.domElem.getBoundingClientRect();
-
-        // Detect collision using bounding rectangles
-        if (
-            !enemyShip.collided &&
-            playerRect.left < enemyRect.right &&
-            playerRect.right > enemyRect.left &&
-            playerRect.top < enemyRect.bottom &&
-            playerRect.bottom > enemyRect.top
-        ) {
-            // Subtract hit from strength
+        if (!enemyShip.collided && isColliding(playerRect, enemyRect)) {
             enemyShip.collided = true;
             player.strength--;
             player.collision();
-            if (player.strength == 0) {
+            if (player.strength === 0) {
                 console.log("game over...");
                 // location.href = "gameover.html";
             }
         }
     });
-}, 60);
 
-// detect multiple key events
-// Initialize a set to store the keys that are currently pressed
-const keysPressed = new Set();
+    checkBulletHits();
+}
 
-// Add event listeners for keydown and keyup events
+function manageShootTimer(enemyShip) {
+    if (enemyShip.shootTimer === undefined) {
+        enemyShip.shootTimer = setInterval(() => {
+            enemyShip.shoot();
+        }, 2000);
+    }
+}
+
+function removeEnemy(enemyShip, index) {
+    if (enemyShip.domElem.parentNode) {
+        enemyShip.domElem.parentNode.removeChild(enemyShip.domElem);
+    }
+    enemies.splice(index, 1);
+    clearInterval(enemyShip.shootTimer);
+    delete enemyShip.shootTimer;
+}
+
+function isColliding(rect1, rect2) {
+    return (
+        rect1.left < rect2.right &&
+        rect1.right > rect2.left &&
+        rect1.top < rect2.bottom &&
+        rect1.bottom > rect2.top
+    );
+}
+
+// Key event listeners
 document.addEventListener("keydown", (e) => {
-    keysPressed.add(e.code);
+    keysPressed[e.code] = true;
 });
 
 document.addEventListener("keyup", (e) => {
     if (e.code === "Space") {
         spaceBarPressed = false;
     }
-    keysPressed.delete(e.code);
+    delete keysPressed[e.code];
 });
+
+function checkPlayerInteraction() {
+    if (keysPressed["Space"] && !spaceBarPressed) {
+        spaceBarPressed = true;
+        player.shoot();
+    }
+
+    if (keysPressed["ArrowLeft"]) {
+        player.moveLeft();
+    }
+    if (keysPressed["ArrowRight"]) {
+        player.moveRight();
+    }
+    if (keysPressed["ArrowUp"]) {
+        if (keysPressed["ArrowLeft"]) {
+            player.moveUp();
+            player.moveLeft();
+        } else if (keysPressed["ArrowRight"]) {
+            player.moveUp();
+            player.moveRight();
+        } else {
+            player.moveUp();
+        }
+    }
+    if (keysPressed["ArrowDown"]) {
+        if (keysPressed["ArrowLeft"]) {
+            player.moveDown();
+            player.moveLeft();
+        } else if (keysPressed["ArrowRight"]) {
+            player.moveDown();
+            player.moveRight();
+        } else {
+            player.moveDown();
+        }
+    }
+}
 
 function checkBulletHits() {
     // Iterate through each bullet
@@ -107,7 +148,7 @@ function checkBulletHits() {
                 enemies.splice(j, 1);
                 // Clear the shoot timer when the enemy is removed
                 clearInterval(enemyShip.shootTimer);
-                delete enemyShip.shootTimer; 
+                delete enemyShip.shootTimer;
 
                 // Remove the bullet from the DOM
                 bullet.remove();
@@ -119,48 +160,8 @@ function checkBulletHits() {
     }
 }
 
-function checkPlayerInteraction() {
-
-    if (keysPressed.has("Space") && !spaceBarPressed) {
-        spaceBarPressed = true;
-        player.shoot();
-    }
-
-    if (keysPressed.has("ArrowLeft")) {
-        player.moveLeft();
-    }
-    if (keysPressed.has("ArrowRight")) {
-        player.moveRight();
-    }
-
-    if (keysPressed.has("ArrowUp")) {
-        if (keysPressed.has("ArrowLeft")) {
-            player.moveUp();
-            player.moveLeft();
-        } else if (keysPressed.has("ArrowRight")) {
-            player.moveUp()
-            player.moveRight();
-        } else {
-            player.moveUp();
-        }
-    }
-
-    if (keysPressed.has("ArrowDown")) {
-        if (keysPressed.has("ArrowLeft")) {
-            player.moveDown();
-            player.moveLeft();
-        } else if (keysPressed.has("ArrowRight")) {
-            player.moveDown();
-            player.moveRight();
-        } else {
-            player.moveDown();
-        }
-    }
-}
-
-// game loop
+// Game loop
 function updateGame() {
-    checkBulletHits();
     checkPlayerInteraction();
     requestAnimationFrame(updateGame);
 }
