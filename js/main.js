@@ -84,6 +84,8 @@ function checkBulletHits() {
                 // Mark the enemy as collided
                 enemyShip.collided = true;
 
+                score.updateScore(enemyShip.points);
+
                 // Remove the enemy from the DOM
                 if (enemyShip.domElem.parentNode) {
                     enemyShip.domElem.parentNode.removeChild(enemyShip.domElem);

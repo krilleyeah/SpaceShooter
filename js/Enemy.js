@@ -8,6 +8,7 @@ class Enemy {
         this.positionY = 100;
         this.domElem = null;
         this.collided = false;
+        this.points = 100;
 
         this.createEnemy();
     }

@@ -12,6 +12,7 @@ class Score {
         this.domElem.style.width = "5vw";
         this.domElem.style.height = "5vh";
         parentElm.appendChild(this.domElem);
+        this.updateScore(this.score);
     }
 
     updateScore(points) {
@@ -20,6 +21,6 @@ class Score {
     }
 
     updateUI() {
-
+        this.domElem.innerHTML = this.score;
     }
 }
