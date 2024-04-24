@@ -39,6 +39,14 @@ class Player {
             this.domElem.style.left = this.positionX + "vw";
         }
     }
+
+    collision() {
+        this.domElem.style.height = (this.height - 5) + "vh";
+        setTimeout(() => {
+            this.domElem.style.height = this.height + "vh";
+        }, 50);
+    }
+
     shoot() {
         const bullet = document.createElement("div");
         bullet.className = "bullet";

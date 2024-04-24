@@ -41,6 +41,7 @@ setInterval(() => {
             // Subtract hit from strength
             enemyShip.collided = true;
             player.strength--;
+            player.collision();
             if (player.strength == 0) {
                 console.log("game over...");
                 // location.href = "gameover.html";
