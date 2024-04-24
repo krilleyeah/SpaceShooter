@@ -1,6 +1,7 @@
 const player = new Player();
 const enemies = [];
 let enemyCounter = 0;
+const score = new Score();
 spaceBarPressed = false;
 
 // create enemies
