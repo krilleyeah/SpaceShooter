@@ -26,7 +26,7 @@ class Health {
             value = value >= 0 ? value : 0;
             this.health = value;
             this.updateUI();
-        } 
+        }
     }
 
     updateUI() {
