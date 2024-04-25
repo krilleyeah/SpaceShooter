@@ -99,8 +99,8 @@ body {
     color: white;
     font-size: 3em;
     font-family: "Audiowide", sans-serif;
-    margin: 15% auto;
-    width: 50%;
+    margin: 10% auto;
+    width: 80%;
     text-align: center;
 }
 
@@ -113,16 +113,24 @@ body {
     text-align: center;
 }
 
+
 #start-screen p {
     font-size: 0.7em;
-    margin-bottom: 10px;
+    line-height: 25px;
 }
 
 #end-screen h1 {
     margin: 0 0 20px 0;
+    font-size: 2.5em;
 }
 
-#end-screen a, #start-screen a {
-    font-size: 1.2em;
-    color: #00aacf;
+#end-screen a {
+    font-size: 1em;
+    /* color: #00aacf; */
+    color: white;
+}
+
+#start-screen a {
+    font-size: 1.8em;
+    color: white;
 }
