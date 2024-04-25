@@ -16,7 +16,7 @@ setInterval(() => {
 // update game
 setInterval(() => {
     updateEnemies();
-}, 80);
+}, 60);
 
 function updateEnemies() {
     enemies.forEach((enemyShip, index) => {
@@ -36,8 +36,7 @@ function updateEnemies() {
             player.strength--;
             player.collision();
             if (player.strength === 0) {
-                console.log("game over...");
-                // location.href = "gameover.html";
+                location.href = "gameover.html";
             }
         }
     });

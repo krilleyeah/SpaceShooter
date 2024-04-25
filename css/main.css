@@ -2,8 +2,6 @@ body {
     background-color: black;
     margin: 0;
     padding: 0;
-
-    /* background-image: url("../img/galaxy-3608029_1280.jpg"); */
     background-image: url("../img/orion-nebula-11107_1280.jpg");
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -41,11 +39,6 @@ body {
     background-size: 90%;
 }
 
-#page-gameover {
-    text-align: center;
-    background-color: black;
-}
-
 .bullet1 {
     position: absolute;
     background-image: url("../img/laser1.png");
@@ -62,10 +55,6 @@ body {
     background-size: 70%;
 }
 
-h1 {
-    color: white;
-}
-
 .score {
     position: relative;
     top: 20px;
@@ -73,4 +62,33 @@ h1 {
     color: white;
     font-size: 2em;
     font-family: "Audiowide", sans-serif;
+}
+
+#page-gameover {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    background-image: url("../img/orion-nebula-11107_1280.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100%; 
+}
+
+#end-screen {
+    color: white;
+    font-size: 3em;
+    font-family: "Audiowide", sans-serif;
+    margin: 15% auto;
+    width: 50%;
+    text-align: center;
+}
+
+#end-screen h1 {
+    margin: 0 0 20px 0;
+}
+
+
+#end-screen a {
+    font-size: 1em;
+    color: #00aacf;
 }
