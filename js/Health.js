@@ -4,7 +4,6 @@ class Health {
         this.domElem = null;
         this.progressBar = null;
         this.createDomElem();
-
     }
 
     createDomElem() {
@@ -30,7 +29,6 @@ class Health {
     }
 
     updateUI() {
-        let calc = (this.health / 100) * 100;
-        this.progressBar.style.width = `${calc}%`;
+        this.progressBar.style.width = `${this.health}%`;
     }
 }

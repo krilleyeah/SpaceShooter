@@ -38,12 +38,10 @@ function updateEnemies() {
             player.collision();
             health.increaseDamage(20);
             if (player.strength === 0) {
-                location.href = "gameover.html";
+                //location.href = "gameover.html";
             }
         }
     });
-
-    checkBulletHits();
 }
 
 function manageShootTimer(enemyShip) {
@@ -130,12 +128,7 @@ function checkBulletHits() {
             const enemyRect = enemyShip.domElem.getBoundingClientRect();
             const bulletRect = bullet.getBoundingClientRect();
 
-            if (
-                bulletRect.left < enemyRect.right &&
-                bulletRect.right > enemyRect.left &&
-                bulletRect.top < enemyRect.bottom &&
-                bulletRect.bottom > enemyRect.top
-            ) {
+            if (isColliding(bulletRect, enemyRect)) {
                 // Mark the enemy as collided
                 enemyShip.collided = true;
 
@@ -161,9 +154,40 @@ function checkBulletHits() {
     }
 }
 
+function checkEnemyBulletHits() {
+    enemies.forEach((enemyShip) => {
+        // Iterate through each enemy's bullet
+        enemyShip.bullets.forEach((bullet) => {
+            const bulletRect = bullet.getBoundingClientRect();
+            const playerRect = player.domElem.getBoundingClientRect();
+
+            // Check for collision with the player
+            if (isColliding(bulletRect, playerRect)) {
+                // Handle the collision here, e.g., decrease player's health
+                player.collision();
+                health.increaseDamage(5);
+
+                // Remove the bullet from the DOM
+                if (bullet.parentNode) {
+                    bullet.parentNode.removeChild(bullet);
+                }
+
+                // Remove the bullet from the enemy's bullets array
+                const index = enemyShip.bullets.indexOf(bullet);
+                if (index !== -1) {
+                    enemyShip.bullets.splice(index, 1);
+                }
+            }
+        });
+    });
+}
+
+
 // Game loop
 function updateGame() {
     checkPlayerInteraction();
+    checkBulletHits();
+    checkEnemyBulletHits();
     requestAnimationFrame(updateGame);
 }
 
