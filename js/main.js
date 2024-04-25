@@ -36,9 +36,7 @@ function updateEnemies() {
             enemyShip.collided = true;
             player.collision();
             health.increaseDamage(20);
-            if (health.health === 0) {
-                location.href = "gameover.html";
-            }
+            checkGameOver();
         }
     });
 }
@@ -153,6 +151,12 @@ function checkBulletHits() {
     }
 }
 
+function checkGameOver() {
+    if (health.health === 0) {
+        location.href = "gameover.html";
+    }
+}
+
 function checkEnemyBulletHits() {
     enemies.forEach((enemyShip) => {
         // Iterate through each enemy's bullet
@@ -164,7 +168,8 @@ function checkEnemyBulletHits() {
             if (isColliding(bulletRect, playerRect)) {
                 // Handle the collision here, e.g., decrease player's health
                 player.collision();
-                health.increaseDamage(5);
+                health.increaseDamage(10);
+                checkGameOver();
 
                 // Remove the bullet from the DOM
                 if (bullet.parentNode) {
