@@ -66,9 +66,6 @@ body {
 }
 
 .health {
-/*     position: relative;
-    top: 30px;
-    left: 20px; */
     font-family: "Audiowide", sans-serif;
     font-size: 1.2em;
     color: white;
@@ -88,7 +85,7 @@ body {
     margin-bottom: 13px;
 }
 
-#page-gameover {
+#page-gameover #page-intro {
     background-color: black;
     margin: 0;
     padding: 0;
@@ -107,12 +104,25 @@ body {
     text-align: center;
 }
 
+#start-screen {
+    color: white;
+    font-size: 3em;
+    font-family: "Audiowide", sans-serif;
+    margin: 5% auto;
+    width: 80%;
+    text-align: center;
+}
+
+#start-screen p {
+    font-size: 0.7em;
+    margin-bottom: 10px;
+}
+
 #end-screen h1 {
     margin: 0 0 20px 0;
 }
 
-
-#end-screen a {
-    font-size: 1em;
+#end-screen a, #start-screen a {
+    font-size: 1.2em;
     color: #00aacf;
 }

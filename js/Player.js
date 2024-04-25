@@ -5,7 +5,7 @@ class Player {
         this.positionX = 50 - this.width / 2;
         this.positionY = 5;
         this.bullets = [];
-        this.strength = 5; // number of hits that can be taken
+        //this.strength = 5; // number of hits that can be taken
         this.bulletSpeed = 15;
 
         this.domElem = document.getElementById("player");

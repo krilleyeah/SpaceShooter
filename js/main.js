@@ -34,11 +34,10 @@ function updateEnemies() {
         const enemyRect = enemyShip.domElem.getBoundingClientRect();
         if (!enemyShip.collided && isColliding(playerRect, enemyRect)) {
             enemyShip.collided = true;
-            player.strength--;
             player.collision();
             health.increaseDamage(20);
-            if (player.strength === 0) {
-                //location.href = "gameover.html";
+            if (health.health === 0) {
+                location.href = "gameover.html";
             }
         }
     });
@@ -48,7 +47,7 @@ function manageShootTimer(enemyShip) {
     if (enemyShip.shootTimer === undefined) {
         enemyShip.shootTimer = setInterval(() => {
             enemyShip.shoot();
-        }, 2000);
+        }, 1000);
     }
 }
 
