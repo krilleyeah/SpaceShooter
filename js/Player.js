@@ -53,7 +53,7 @@ class Player {
         bullet.style.height = "7vh";
 
         // Calculate the position of the bullet based on the player's position and width
-        const bulletLeft = this.positionX + (this.width / 2) - 2;
+        const bulletLeft = this.positionX + (this.width / 2) - 1.6;
         const bulletBottom = this.positionY + this.height + 0.5;
 
         bullet.style.left = bulletLeft + "vw";

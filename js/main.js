@@ -12,7 +12,7 @@ setInterval(() => {
     let enemyClass = enemyCounter % 2 == 0 ? "enemy1" : "enemy2";
     const newEnemy = new Enemy(enemyClass);
     enemies.push(newEnemy);
-}, 1000);
+}, 700);
 
 // update game
 setInterval(() => {
@@ -45,7 +45,7 @@ function manageShootTimer(enemyShip) {
     if (enemyShip.shootTimer === undefined) {
         enemyShip.shootTimer = setInterval(() => {
             enemyShip.shoot();
-        }, 1000);
+        }, 1300);
     }
 }
 

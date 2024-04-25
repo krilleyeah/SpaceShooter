@@ -9,7 +9,7 @@ class Enemy {
         this.domElem = null;
         this.collided = false;
         this.points = 100;
-        this.bulletSpeed = 30;
+        this.bulletSpeed = 25;
         this.bullets = [];
         this.shootTimer = undefined;
 
