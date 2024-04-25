@@ -2,6 +2,7 @@ const player = new Player();
 const enemies = [];
 let enemyCounter = 0;
 const score = new Score();
+const health = new Health();
 let spaceBarPressed = false;
 let keysPressed = {};
 
@@ -35,6 +36,7 @@ function updateEnemies() {
             enemyShip.collided = true;
             player.strength--;
             player.collision();
+            health.increaseDamage(20);
             if (player.strength === 0) {
                 location.href = "gameover.html";
             }

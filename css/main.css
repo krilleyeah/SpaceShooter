@@ -21,6 +21,7 @@ body {
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: 90%;
+    z-index: 10;
 }
 
 .enemy1 {
@@ -62,6 +63,29 @@ body {
     color: white;
     font-size: 2em;
     font-family: "Audiowide", sans-serif;
+}
+
+.health {
+/*     position: relative;
+    top: 30px;
+    left: 20px; */
+    font-family: "Audiowide", sans-serif;
+    font-size: 1.2em;
+    color: white;
+    left: 20px;
+    bottom: 100px;
+    position: absolute;
+}
+
+.health .progressBar {
+    height: 20px;
+    background-color: #00aacf;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.health p {
+    margin-bottom: 13px;
 }
 
 #page-gameover {
