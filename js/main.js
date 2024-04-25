@@ -12,7 +12,7 @@ setInterval(() => {
     let enemyClass = enemyCounter % 2 == 0 ? "enemy1" : "enemy2";
     const newEnemy = new Enemy(enemyClass);
     enemies.push(newEnemy);
-}, 1500);
+}, 1000);
 
 // update game
 setInterval(() => {
