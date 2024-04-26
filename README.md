@@ -8,7 +8,7 @@ This Space Shooter game is a rendition of the classic space shooter arcade games
 ## How to play
 
 - Use the arrow keys to move.
-U- se the space bar to fire.
+- Hit the space bar to fire.
 
 The goal of the game is to destroy as many enemy ships as possible.
 Avoid collisions with enemies and laser beams. Collisions will
