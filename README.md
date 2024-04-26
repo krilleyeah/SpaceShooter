@@ -3,7 +3,7 @@
 ![](./img/game-screenshot.jpg)
 
 ## Summary
-Frogger Arcade game is a slight cariation of the classic Frogger Arcade Game developed by Konami. I made this game as a project that is part of the Udacity Front-End Web Developer Nanodegree.
+This Space Shooter game is a rendition of the classic space shooter arcade games. I developed this game as a project that is part of the Ironhack Fullstack developer course in 2024.
 
 ## How to play
 
@@ -27,7 +27,7 @@ Object-Oriented JavaScript
 HTML
 CSS
 
-### Licenses and ressources
+## Licenses and ressources
 Graphics used
 [Designed by vectorpouch / Freepik](http://www.freepik.com)
 
