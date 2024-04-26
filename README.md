@@ -22,11 +22,11 @@ You can also play the game by clicking this link:
 https://krilleyeah.github.io/SpaceShooter/
 
 
-## Developed using
+## Developed with
 - Object-Oriented JavaScript
 - HTML
 - CSS
 
-## Licenses and ressources
+## Licenses and resources
 Graphics: [Designed by vectorpouch / Freepik](http://www.freepik.com)
 
