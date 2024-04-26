@@ -28,6 +28,5 @@ https://krilleyeah.github.io/SpaceShooter/
 - CSS
 
 ## Licenses and ressources
-Graphics by
-[Designed by vectorpouch / Freepik](http://www.freepik.com)
+Graphics: [Designed by vectorpouch / Freepik](http://www.freepik.com)
 
